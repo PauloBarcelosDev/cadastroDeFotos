@@ -1,19 +1,18 @@
 angular.module("alurapic").controller("cadastroFotoController", function(
     $scope,
     $routeParams,
+    $http,
     urlFoto
   ) {
     $scope.foto = {};
     $scope.mensagem = "";
 
     if ($routeParams.fotoId) {
-      
-      urlFoto.query(function(foto){
+        urlFoto.get({fotoId: $routeParams.fotoId},function(foto){
         $scope.foto = foto;
       }), function(error){
         $scope.mensagem = "Não foi possivel obter a Foto";
       };
-  
     }
 
     $scope.submeter = function() {
